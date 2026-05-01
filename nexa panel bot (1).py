@@ -1016,19 +1016,20 @@ def poll_otp(chat_id, number_id, phone_number, service_info, api_key, msg_id, is
     while time.time() - start_time < timeout:
         if not active_polls.get(str(chat_id), True): return 
         
-        try:
+                try:
             res = requests.get(f"{BASE_URL}/api/v1/numbers/{number_id}/sms", headers=headers, timeout=15)
             s_data = res.json()
-            
+
             if s_data.get("success") and s_data.get("otp"):
-                        otp_code = s_data.get("otp")
-                        c_name = service_info.get('country_name', '').lower().strip()
-                        s_name = service_info.get('service_name', '').lower().strip()
-                        c_code = COUNTRY_ISO.get(c_name, 'flag') 
-                        flag = get_country_flag(c_code)
-                        srv_emoji = eno(SERVICE_SHORTS.get(s_name, s_name))
-                       disp_num = f"+{str(phone_number).replace('+', '')}"
-                
+                    otp_code = s_data.get("otp")
+                    c_name = service_info.get('country_name', '').lower().strip()
+                    s_name = service_info.get('service_name', '').lower().strip()
+                    c_code = COUNTRY_ISO.get(c_name, 'flag')
+                    flag = get_country_flag(c_code)
+                    srv_emoji = eno(SERVICE_SHORTS.get(s_name, s_name))
+                    disp_num = f"+{str(phone_number).replace('+', '')}"
+
+               
                 # Update main message
                 success_text = (
                     f"{emo('done')} <b>COMPLETED</b> {emo('done')}\n"
