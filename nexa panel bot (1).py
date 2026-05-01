@@ -1027,7 +1027,7 @@ def poll_otp(chat_id, number_id, phone_number, service_info, api_key, msg_id, is
                         c_code = COUNTRY_ISO.get(c_name, 'flag') 
                         flag = get_country_flag(c_code)
                         srv_emoji = eno(SERVICE_SHORTS.get(s_name, s_name))
-                        disp_num = f"+{str(phone_number).replace('+', '')}"
+                       disp_num = f"+{str(phone_number).replace('+', '')}"
                 
                 # Update main message
                 success_text = (
