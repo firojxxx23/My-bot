@@ -960,8 +960,12 @@ def fetch_number(chat_id, service_info, api_key, msg_id, is_custom=False):
             data = load_data()
             watermark = data.get("watermark", "VIP NUMBER CLUB")
             
-            flag = get_country_flag(service_info['country_name'])
-            srv_emoji = emo(service_info['service_name'])
+            c_name = service_info.get('country_name', '').lower().strip()
+            s_name = service_info.get('service_name', '').lower().strip()
+            c_code = COUNTRY_ISO.get(c_name, 'flag')
+            flag = get_country_flag(c_code)
+            srv_emoji = eno(SERVICE_SHORTS.get(s_name, s_name))
+
             
             text = (
                 f"{emo('crown')} <b>NUMBER ALLOCATED</b> {emo('crown')}\n"
