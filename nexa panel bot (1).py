@@ -833,7 +833,8 @@ def process_api_traffic_search(message, msg_id):
         
         try:
             headers = {'X-API-Key': NEXA_API_KEY, 'Cache-Control': 'no-cache'}
-            response = requests.get(f"{BASE_URL}/api/v1/console/logs?limit=200", headers=headers, timeout=10)
+            response = requests.get(f"{BASE_URL}/api/v1/console/logs?limit=500&t={int(time.time())}", headers=headers)
+
             res_data = response.json()
             if res_data.get("success") and res_data.get("data"):
                 for item in res_data["data"]:
